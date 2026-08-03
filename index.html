@@ -168,6 +168,14 @@
             min-width: 50px;
             text-align: center;
         }
+        /* ----- ФОН ДЛЯ ВСЕХ СЛАЙДОВ (2.jpg) ----- */
+        .page-bg {
+            position: absolute;
+            inset: 0;
+            background: url('images/2.jpg') center/cover no-repeat;
+            z-index: 0;
+            opacity: 0.15;
+        }
         /* ----- COMMON STYLES ----- */
         .hero-badge {
             display: inline-block;
@@ -243,6 +251,7 @@
             box-shadow: 0 24px 64px rgba(49, 84, 58, 0.12);
             background: var(--milk);
             position: relative;
+            z-index: 2;
         }
         .hero-image-frame img {
             width: 100%;
@@ -363,7 +372,8 @@
             z-index: 2;
         }
         .service-card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
             border-radius: 18px;
             padding: 32px 24px 28px;
             text-align: center;
@@ -376,6 +386,7 @@
             transform: translateY(-6px);
             box-shadow: 0 16px 48px rgba(49, 84, 58, 0.10);
             border-color: rgba(49, 84, 58, 0.10);
+            background: rgba(255, 255, 255, 0.95);
         }
         .service-card .icon {
             font-size: 2.2rem;
@@ -996,6 +1007,7 @@
 
             <!-- ==================== SLIDE 1: HERO ==================== -->
             <section class="page page-hero" data-index="0" aria-label="Главная страница">
+                <div class="page-bg"></div>
                 <div class="page-inner">
                     <div class="hero-left">
                         <div class="hero-badge">✦ Премиальная стоматология</div>
@@ -1007,7 +1019,9 @@
                         <a href="#" class="hero-btn" onclick="event.preventDefault(); goToPage(5);">Записаться на прием <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="hero-right">
-                        <!-- фото убрана, оставлен только чистый фон -->
+                        <div class="hero-image-frame">
+                            <img src="images/9.jpg" alt="Стоматологическая клиника" />
+                        </div>
                     </div>
                 </div>
                 <div class="page-number"><span>01</span> / 06</div>
@@ -1016,6 +1030,7 @@
 
             <!-- ==================== SLIDE 2: ABOUT ==================== -->
             <section class="page page-about" data-index="1" aria-label="О клинике">
+                <div class="page-bg"></div>
                 <div class="page-inner">
                     <div class="about-text">
                         <span class="hero-badge" style="margin-bottom:16px;">О нас</span>
@@ -1037,6 +1052,7 @@
 
             <!-- ==================== SLIDE 3: SERVICES ==================== -->
             <section class="page page-services" data-index="2" aria-label="Услуги">
+                <div class="page-bg"></div>
                 <div class="page-inner">
                     <div class="services-header">
                         <span class="label">Наши услуги</span>
@@ -1056,6 +1072,7 @@
 
             <!-- ==================== SLIDE 4: WHY ==================== -->
             <section class="page page-why" data-index="3" aria-label="Почему выбирают нас">
+                <div class="page-bg"></div>
                 <div class="page-inner">
                     <div class="why-left">
                         <span class="label">Почему выбирают нас?</span>
@@ -1069,7 +1086,7 @@
                     </div>
                     <div class="why-right">
                         <div class="why-image-composition">
-                            <img src="images/4.jpg" alt="Зуб на камне" />
+                            <img src="images/11.jpg" alt="Зуб на камне" />
                         </div>
                     </div>
                 </div>
@@ -1078,6 +1095,7 @@
 
             <!-- ==================== SLIDE 5: GALLERY ==================== -->
             <section class="page page-gallery" data-index="4" aria-label="Наша клиника">
+                <div class="page-bg"></div>
                 <div class="page-inner">
                     <div class="gallery-header">
                         <span class="label">Наша клиника</span>
@@ -1085,9 +1103,9 @@
                         <p>и внимательное отношение к каждому пациенту.</p>
                     </div>
                     <div class="gallery-grid">
-                        <div class="gallery-item"><img src="images/9.jpg" alt="Ресепшен" /><div class="caption">Уютная зона ресепшен</div></div>
-                        <div class="gallery-item"><img src="images/2.jpg" alt="Кабинет" /><div class="caption">Современный кабинет</div></div>
-                        <div class="gallery-item"><img src="images/8.jpg" alt="Зона ожидания" /><div class="caption">Зона ожидания с растениями</div></div>
+                        <div class="gallery-item"><img src="images/3.jpg" alt="Ресепшен" /><div class="caption">Уютная зона ресепшен</div></div>
+                        <div class="gallery-item"><img src="images/12.jpg" alt="Кабинет" /><div class="caption">Современный кабинет</div></div>
+                        <div class="gallery-item"><img src="images/10.jpg" alt="Зона ожидания" /><div class="caption">Зона ожидания с растениями</div></div>
                     </div>
                 </div>
                 <div class="page-number"><span>05</span> / 06</div>
@@ -1095,6 +1113,7 @@
 
             <!-- ==================== SLIDE 6: CONTACTS ==================== -->
             <section class="page page-contacts" data-index="5" aria-label="Контакты">
+                <div class="page-bg"></div>
                 <div class="page-inner">
                     <div class="contacts-left">
                         <span class="label">Контакты</span>
@@ -1106,7 +1125,7 @@
                     </div>
                     <div class="contacts-right">
                         <div class="contacts-image-frame">
-                            <img src="images/6.jpg" alt="Уютный уголок" />
+                            <img src="images/13.jpg" alt="Уютный уголок" />
                         </div>
                     </div>
                 </div>
