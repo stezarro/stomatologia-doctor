@@ -1,0 +1,720 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Стоматология Доктор — премиальная клиника</title>
+    <meta name="description" content="Стоматология Доктор — современная клиника с заботой о каждом пациенте." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <style>
+        /* ===== БАЗА ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        :root {
+            --jungle: #31543A;
+            --cream: #FBF8F3;
+            --white: #fff;
+            --shadow: 0 12px 48px rgba(49, 84, 58, 0.10);
+        }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--cream);
+            overflow: hidden;
+            height: 100vh;
+        }
+        /* ===== ЖУРНАЛ ===== */
+        .magazine {
+            display: flex;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .pages-wrapper {
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
+            width: 100%;
+        }
+        .page {
+            flex: 0 0 100vw;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            padding: 40px 60px;
+            position: relative;
+            background: var(--cream);
+        }
+        .page-inner {
+            max-width: 1400px;
+            width: 100%;
+            margin: 0 auto;
+            display: grid;
+            gap: 40px;
+            align-items: center;
+            position: relative;
+            z-index: 2;
+        }
+        /* ===== НАВИГАЦИЯ ===== */
+        .nav-controls {
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 100;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.75);
+            backdrop-filter: blur(20px);
+            padding: 12px 24px;
+            border-radius: 60px;
+            box-shadow: 0 8px 40px rgba(49, 84, 58, 0.10);
+        }
+        .nav-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            background: var(--jungle);
+            color: #fff;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-btn:hover {
+            background: #4A7354;
+            transform: scale(1.05);
+        }
+        .nav-btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+        }
+        .nav-dots {
+            display: flex;
+            gap: 8px;
+        }
+        .nav-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #E8DDD0;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .nav-dot.active {
+            background: var(--jungle);
+            width: 28px;
+            border-radius: 4px;
+        }
+        .nav-page-indicator {
+            font-family: 'Playfair Display', serif;
+            font-size: 0.75rem;
+            color: var(--jungle);
+            opacity: 0.5;
+            min-width: 50px;
+            text-align: center;
+        }
+        .page-number {
+            position: absolute;
+            bottom: 36px;
+            right: 48px;
+            font-family: 'Playfair Display', serif;
+            font-size: 0.85rem;
+            opacity: 0.35;
+            background: rgba(255, 255, 255, 0.60);
+            padding: 6px 18px;
+            border-radius: 40px;
+        }
+        /* ===== СТРАНИЦА 1 ===== */
+        .page-hero .page-inner {
+            grid-template-columns: 1fr 1fr;
+        }
+        .hero-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, transparent 60%),
+                url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1400&q=80') center/cover;
+            z-index: 0;
+        }
+        .hero-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.8rem, 6vw, 4.8rem);
+            color: var(--jungle);
+            line-height: 1.05;
+        }
+        .hero-logo span {
+            font-weight: 300;
+        }
+        .hero-tagline {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(1.2rem, 2.2vw, 2rem);
+            color: #4A5F4A;
+            font-style: italic;
+            margin: 16px 0 32px;
+        }
+        .hero-btn {
+            display: inline-block;
+            background: var(--jungle);
+            color: #fff;
+            font-weight: 600;
+            padding: 16px 44px;
+            border-radius: 60px;
+            text-decoration: none;
+            transition: 0.3s;
+            box-shadow: 0 8px 32px rgba(49, 84, 58, 0.25);
+        }
+        .hero-btn:hover {
+            background: #4A7354;
+            transform: translateY(-3px);
+        }
+        .hero-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .hero-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ===== СТРАНИЦА 2 ===== */
+        .page-about .page-inner {
+            grid-template-columns: 1fr 1fr;
+        }
+        .about-text h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            color: var(--jungle);
+        }
+        .about-text p {
+            font-weight: 300;
+            line-height: 1.9;
+            margin: 16px 0 28px;
+            max-width: 480px;
+        }
+        .about-icons {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px 30px;
+        }
+        .about-icon-item {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .about-icon-item .icon {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(49, 84, 58, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--jungle);
+        }
+        .about-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .about-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ===== СТРАНИЦА 3 ===== */
+        .services-header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .services-header h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            color: var(--jungle);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .service-card {
+            background: var(--white);
+            border-radius: 18px;
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: 0 8px 32px rgba(49, 84, 58, 0.07);
+            transition: 0.3s;
+        }
+        .service-card:hover {
+            transform: translateY(-6px);
+        }
+        .service-card .icon {
+            font-size: 2.2rem;
+            display: block;
+            margin-bottom: 14px;
+        }
+        .service-card h4 {
+            font-family: 'Playfair Display', serif;
+            color: var(--jungle);
+        }
+        .service-card p {
+            font-size: 0.8rem;
+            font-weight: 300;
+            color: #5A6F5A;
+            margin-top: 6px;
+        }
+        /* ===== СТРАНИЦА 4 ===== */
+        .page-why .page-inner {
+            grid-template-columns: 1fr 1fr;
+        }
+        .why-left h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            color: var(--jungle);
+            margin-bottom: 28px;
+        }
+        .why-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            padding: 12px 18px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.5);
+            margin-bottom: 12px;
+        }
+        .why-item .icon {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: rgba(49, 84, 58, 0.07);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--jungle);
+        }
+        .why-image {
+            width: 100%;
+            aspect-ratio: 1/1;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .why-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ===== СТРАНИЦА 5 ===== */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            aspect-ratio: 4/3;
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: 0.3s;
+        }
+        .gallery-item:hover {
+            transform: scale(1.02);
+        }
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ===== СТРАНИЦА 6 ===== */
+        .page-contacts .page-inner {
+            grid-template-columns: 1fr 1fr;
+        }
+        .contacts-left h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.4rem, 4.5vw, 4rem);
+            color: var(--jungle);
+            line-height: 1.1;
+            margin-bottom: 28px;
+        }
+        .contacts-left h2 span {
+            font-weight: 300;
+            font-style: italic;
+        }
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 18px;
+        }
+        .contact-item .icon {
+            width: 42px;
+            height: 42px;
+            border-radius: 50%;
+            background: rgba(49, 84, 58, 0.06);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--jungle);
+        }
+        .contact-item .text strong {
+            display: block;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--jungle);
+        }
+        .contacts-image {
+            width: 100%;
+            aspect-ratio: 4/3;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: var(--shadow);
+        }
+        .contacts-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        /* ===== АДАПТИВ ===== */
+        @media (max-width: 768px) {
+            .page {
+                padding: 24px 28px;
+            }
+            .page-hero .page-inner,
+            .page-about .page-inner,
+            .page-why .page-inner,
+            .page-contacts .page-inner {
+                grid-template-columns: 1fr;
+            }
+            .hero-image,
+            .about-image,
+            .why-image,
+            .contacts-image {
+                max-width: 400px;
+                margin: 0 auto;
+            }
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 14px;
+            }
+            .nav-controls {
+                bottom: 24px;
+                padding: 10px 16px;
+                gap: 12px;
+            }
+            .nav-btn {
+                width: 36px;
+                height: 36px;
+            }
+            .page-number {
+                bottom: 80px;
+                right: 20px;
+            }
+        }
+        @media (max-width: 480px) {
+            .page {
+                padding: 20px 16px;
+            }
+            .services-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .service-card {
+                padding: 16px 12px;
+            }
+            .service-card .icon {
+                font-size: 1.6rem;
+            }
+            .gallery-grid {
+                gap: 8px;
+            }
+            .hero-btn {
+                padding: 12px 26px;
+                font-size: 0.85rem;
+            }
+            .nav-controls {
+                padding: 8px 12px;
+                gap: 8px;
+            }
+            .nav-btn {
+                width: 32px;
+                height: 32px;
+                font-size: 0.8rem;
+            }
+        }
+        /* ===== ПЕРЕХОД МЕЖДУ СТРАНИЦАМИ ===== */
+        .page-transition {
+            position: fixed;
+            inset: 0;
+            z-index: 999;
+            pointer-events: none;
+            background: var(--cream);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .page-transition.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        .lazy {
+            filter: blur(4px);
+            transition: filter 0.6s;
+        }
+        .lazy.loaded {
+            filter: blur(0);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="page-transition" id="pageTransition"></div>
+
+    <div class="magazine" id="magazine">
+        <div class="pages-wrapper" id="pagesWrapper">
+
+            <!-- ===== СТРАНИЦА 1 ===== -->
+            <section class="page page-hero" data-index="0">
+                <div class="hero-bg"></div>
+                <div class="page-inner">
+                    <div>
+                        <h1 class="hero-logo">Стоматология<br /><span>Доктор</span></h1>
+                        <p class="hero-tagline">«Здоровая улыбка начинается с заботы»</p>
+                        <a href="#" class="hero-btn" onclick="event.preventDefault(); goToPage(5);">
+                            Записаться на прием <i class="fas fa-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="hero-image">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Клиника" loading="lazy" class="lazy" />
+                    </div>
+                </div>
+                <div class="page-number"><span>01</span> / 06</div>
+            </section>
+
+            <!-- ===== СТРАНИЦА 2 ===== -->
+            <section class="page page-about" data-index="1">
+                <div class="page-inner">
+                    <div class="about-text">
+                        <h2>Современная стоматология с заботой о каждом</h2>
+                        <p>Мы сочетаем передовые технологии и тепло человеческого подхода. В нашей клинике каждый пациент чувствует себя в безопасности.</p>
+                        <div class="about-icons">
+                            <div class="about-icon-item"><div class="icon"><i class="fas fa-user-md"></i></div> Опытные врачи</div>
+                            <div class="about-icon-item"><div class="icon"><i class="fas fa-microscope"></i></div> Современное оборудование</div>
+                            <div class="about-icon-item"><div class="icon"><i class="fas fa-heartbeat"></i></div> Безболезненное лечение</div>
+                            <div class="about-icon-item"><div class="icon"><i class="fas fa-hand-holding-heart"></i></div> Индивидуальный подход</div>
+                        </div>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Интерьер клиники" loading="lazy" class="lazy" />
+                    </div>
+                </div>
+                <div class="page-number"><span>02</span> / 06</div>
+            </section>
+
+            <!-- ===== СТРАНИЦА 3 ===== -->
+            <section class="page" data-index="2">
+                <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;">
+                    <div class="services-header">
+                        <h2>Комплексная стоматология</h2>
+                    </div>
+                    <div class="services-grid">
+                        <div class="service-card"><span class="icon">🦷</span><h4>Лечение зубов</h4><p>Терапия любой сложности</p></div>
+                        <div class="service-card"><span class="icon">🔩</span><h4>Имплантация</h4><p>Мировые бренды с гарантией</p></div>
+                        <div class="service-card"><span class="icon">🔄</span><h4>Ортодонтия</h4><p>Эстетическое выравнивание</p></div>
+                        <div class="service-card"><span class="icon">✨</span><h4>Отбеливание</h4><p>Безопасные методики</p></div>
+                        <div class="service-card"><span class="icon">🔬</span><h4>Хирургия</h4><p>Щадящие операции</p></div>
+                        <div class="service-card"><span class="icon">🧼</span><h4>Проф. чистка</h4><p>Air Flow гигиена</p></div>
+                    </div>
+                </div>
+                <div class="page-number"><span>03</span> / 06</div>
+            </section>
+
+            <!-- ===== СТРАНИЦА 4 ===== -->
+            <section class="page page-why" data-index="3">
+                <div class="page-inner">
+                    <div class="why-left">
+                        <h2>Выбирают доверие и качество</h2>
+                        <div class="why-item"><div class="icon"><i class="fas fa-bullseye"></i></div> Высокая точность лечения</div>
+                        <div class="why-item"><div class="icon"><i class="fas fa-shield-alt"></i></div> Комфорт и безопасность</div>
+                        <div class="why-item"><div class="icon"><i class="fas fa-hand-holding-usd"></i></div> Честные цены</div>
+                        <div class="why-item"><div class="icon"><i class="fas fa-award"></i></div> Гарантия качества</div>
+                    </div>
+                    <div class="why-image">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Зуб и зелень" loading="lazy" class="lazy" />
+                    </div>
+                </div>
+                <div class="page-number"><span>04</span> / 06</div>
+            </section>
+
+            <!-- ===== СТРАНИЦА 5 ===== -->
+            <section class="page" data-index="4">
+                <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;">
+                    <div class="services-header">
+                        <h2>Пространство уюта и заботы</h2>
+                    </div>
+                    <div class="gallery-grid">
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Ресепшен" loading="lazy" class="lazy" /></div>
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80" alt="Кабинет" loading="lazy" class="lazy" /></div>
+                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Зона ожидания" loading="lazy" class="lazy" /></div>
+                    </div>
+                </div>
+                <div class="page-number"><span>05</span> / 06</div>
+            </section>
+
+            <!-- ===== СТРАНИЦА 6 ===== -->
+            <section class="page page-contacts" data-index="5">
+                <div class="page-inner">
+                    <div class="contacts-left">
+                        <h2>Ждем вас в <span>стоматологии Доктор</span></h2>
+                        <div class="contact-item">
+                            <div class="icon"><i class="fas fa-location-dot"></i></div>
+                            <div class="text"><strong>Адрес</strong>ул. Зеленая, 15, Москва</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon"><i class="fas fa-phone"></i></div>
+                            <div class="text"><strong>Телефон</strong>+7 (495) 123-45-67</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon"><i class="fas fa-clock"></i></div>
+                            <div class="text"><strong>Часы работы</strong>Пн–Вс 09:00 – 21:00</div>
+                        </div>
+                    </div>
+                    <div class="contacts-image">
+                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Клиника" loading="lazy" class="lazy" />
+                    </div>
+                </div>
+                <div class="page-number"><span>06</span> / 06</div>
+            </section>
+
+        </div>
+
+        <!-- ===== НАВИГАЦИЯ ===== -->
+        <nav class="nav-controls">
+            <button class="nav-btn" id="prevBtn" aria-label="Предыдущая"><i class="fas fa-chevron-left"></i></button>
+            <div class="nav-dots" id="navDots"></div>
+            <span class="nav-page-indicator" id="pageIndicator">01 / 06</span>
+            <button class="nav-btn" id="nextBtn" aria-label="Следующая"><i class="fas fa-chevron-right"></i></button>
+        </nav>
+    </div>
+
+    <script>
+        (function() {
+            const wrapper = document.getElementById('pagesWrapper');
+            const pages = document.querySelectorAll('.page');
+            const total = pages.length;
+            let current = 0,
+                transitioning = false;
+
+            const prevBtn = document.getElementById('prevBtn');
+            const nextBtn = document.getElementById('nextBtn');
+            const dotsContainer = document.getElementById('navDots');
+            const indicator = document.getElementById('pageIndicator');
+            const overlay = document.getElementById('pageTransition');
+
+            // Создаём точки
+            for (let i = 0; i < total; i++) {
+                const dot = document.createElement('button');
+                dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                dot.setAttribute('aria-label', `Перейти к странице ${i+1}`);
+                dot.dataset.index = i;
+                dot.onclick = () => goTo(parseInt(dot.dataset.index));
+                dotsContainer.appendChild(dot);
+            }
+            const dots = dotsContainer.querySelectorAll('.nav-dot');
+
+            function updateUI(index) {
+                wrapper.style.transform = `translateX(-${index * 100}vw)`;
+                dots.forEach((d, i) => d.classList.toggle('active', i === index));
+                indicator.textContent = `${String(index+1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
+                prevBtn.disabled = index === 0;
+                nextBtn.disabled = index === total - 1;
+                pages.forEach((p, i) => {
+                    const num = p.querySelector('.page-number');
+                    if (num) num.innerHTML = `<span>${String(i+1).padStart(2, '0')}</span> / ${String(total).padStart(2, '0')}`;
+                });
+            }
+
+            function goTo(index) {
+                if (transitioning || index === current || index < 0 || index >= total) return;
+                transitioning = true;
+                overlay.classList.add('active');
+                setTimeout(() => {
+                    current = index;
+                    updateUI(current);
+                    setTimeout(() => { overlay.classList.remove('active');
+                        transitioning = false; }, 300);
+                }, 300);
+            }
+
+            function next() { if (current < total - 1) goTo(current + 1); }
+
+            function prev() { if (current > 0) goTo(current - 1); }
+
+            prevBtn.onclick = prev;
+            nextBtn.onclick = next;
+
+            // Клавиатура
+            document.addEventListener('keydown', e => {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault();
+                    next(); }
+                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault();
+                    prev(); }
+            });
+
+            // Свайп
+            let touchX = 0;
+            document.getElementById('magazine').addEventListener('touchstart', e => {
+                touchX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            document.getElementById('magazine').addEventListener('touchend', e => {
+                const dx = e.changedTouches[0].screenX - touchX;
+                if (Math.abs(dx) > 40) { if (dx < 0) next();
+                    else prev(); }
+            }, { passive: true });
+
+            // Колёсико
+            let wheelLock = false;
+            document.getElementById('magazine').addEventListener('wheel', e => {
+                if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
+                    e.preventDefault();
+                    if (!wheelLock) {
+                        wheelLock = true;
+                        if (e.deltaX > 30) next();
+                        else if (e.deltaX < -30) prev();
+                        setTimeout(() => { wheelLock = false; }, 600);
+                    }
+                }
+            }, { passive: false });
+
+            // Ленивая загрузка
+            document.querySelectorAll('img.lazy').forEach(img => {
+                if ('IntersectionObserver' in window) {
+                    new IntersectionObserver((entries) => {
+                        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('loaded');
+                                this.disconnect(); } });
+                    }, { threshold: 0.1 }).observe(img);
+                } else img.classList.add('loaded');
+            });
+
+            updateUI(0);
+            window.goToPage = goTo;
+        })();
+    </script>
+
+</body>
+</html>
