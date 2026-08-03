@@ -4,60 +4,121 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Стоматология Доктор — премиальная клиника</title>
-    <meta name="description" content="Стоматология Доктор — современная клиника с заботой о каждом пациенте." />
+    <meta name="description" content="Стоматология Доктор — современная клиника с заботой о каждом пациенте. Лечение, имплантация, ортодонтия." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,500;1,600&family=Montserrat:wght@300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
     <style>
-        /* ===== БАЗА ===== */
-        * {
+        /* ===== СБРОС И БАЗА ===== */
+        *,
+        *::before,
+        *::after {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+
         :root {
-            --jungle: #31543A;
+            --white: #FFFFFF;
             --cream: #FBF8F3;
-            --white: #fff;
-            --shadow: 0 12px 48px rgba(49, 84, 58, 0.10);
+            --milk: #F5F0E8;
+            --beige: #E8DDD0;
+            --beige-warm: #DCCFC0;
+            --jungle: #31543A;
+            --jungle-light: #4A7354;
+            --jungle-pale: rgba(49, 84, 58, 0.08);
+            --shadow-soft: 0 12px 48px rgba(49, 84, 58, 0.10);
+            --shadow-card: 0 8px 32px rgba(49, 84, 58, 0.07);
+            --radius-card: 20px;
+            --transition-smooth: 0.7s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            --font-serif: 'Playfair Display', 'Cormorant Garamond', serif;
+            --font-sans: 'Montserrat', sans-serif;
         }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
         body {
-            font-family: 'Montserrat', sans-serif;
+            font-family: var(--font-sans);
             background: var(--cream);
+            color: #2D3A2D;
             overflow: hidden;
             height: 100vh;
+            width: 100vw;
         }
-        /* ===== ЖУРНАЛ ===== */
+
+        /* ===== ОБЁРТКА ЖУРНАЛА ===== */
         .magazine {
             display: flex;
             height: 100vh;
+            width: 100vw;
             overflow: hidden;
+            position: relative;
+            background: var(--cream);
         }
+
+        /* ===== КОНТЕЙНЕР СТРАНИЦ ===== */
         .pages-wrapper {
             display: flex;
+            height: 100vh;
+            width: 100vw;
             transition: transform 0.8s cubic-bezier(0.22, 0.61, 0.36, 1);
-            width: 100%;
+            will-change: transform;
         }
+
         .page {
             flex: 0 0 100vw;
             height: 100vh;
             display: flex;
             align-items: center;
-            padding: 40px 60px;
+            justify-content: center;
+            padding: 0;
             position: relative;
+            overflow: hidden;
             background: var(--cream);
         }
+
+        /* ===== ВНУТРЕННИЙ КОНТЕЙНЕР СТРАНИЦЫ ===== */
         .page-inner {
-            max-width: 1400px;
             width: 100%;
+            height: 100%;
+            max-width: 1400px;
             margin: 0 auto;
-            display: grid;
-            gap: 40px;
-            align-items: center;
+            padding: 40px 60px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             position: relative;
             z-index: 2;
         }
+
+        /* ===== НОМЕРА СТРАНИЦ ===== */
+        .page-number {
+            position: absolute;
+            bottom: 36px;
+            right: 48px;
+            font-family: var(--font-serif);
+            font-size: 0.85rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: var(--jungle);
+            opacity: 0.35;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.60);
+            backdrop-filter: blur(8px);
+            padding: 6px 18px;
+            border-radius: 40px;
+            border: 1px solid rgba(49, 84, 58, 0.06);
+        }
+        .page-number span {
+            font-weight: 600;
+            opacity: 0.8;
+        }
+
         /* ===== НАВИГАЦИЯ ===== */
         .nav-controls {
             position: fixed;
@@ -73,7 +134,9 @@
             padding: 12px 24px;
             border-radius: 60px;
             box-shadow: 0 8px 40px rgba(49, 84, 58, 0.10);
+            border: 1px solid rgba(255, 255, 255, 0.40);
         }
+
         .nav-btn {
             width: 44px;
             height: 44px;
@@ -81,134 +144,271 @@
             border: none;
             background: var(--jungle);
             color: #fff;
+            font-size: 1rem;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 16px rgba(49, 84, 58, 0.20);
         }
         .nav-btn:hover {
-            background: #4A7354;
+            background: var(--jungle-light);
             transform: scale(1.05);
+            box-shadow: 0 6px 24px rgba(49, 84, 58, 0.30);
         }
         .nav-btn:disabled {
             opacity: 0.3;
             cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
         }
+        .nav-btn:disabled:hover {
+            background: var(--jungle);
+            transform: none;
+            box-shadow: 0 4px 16px rgba(49, 84, 58, 0.20);
+        }
+
         .nav-dots {
             display: flex;
             gap: 8px;
+            align-items: center;
+            padding: 0 12px;
         }
         .nav-dot {
             width: 8px;
             height: 8px;
             border-radius: 50%;
-            background: #E8DDD0;
-            border: none;
+            background: var(--beige);
+            transition: all 0.4s ease;
             cursor: pointer;
-            transition: 0.3s;
+            border: none;
+            padding: 0;
         }
         .nav-dot.active {
             background: var(--jungle);
             width: 28px;
             border-radius: 4px;
         }
+        .nav-dot:hover {
+            background: var(--jungle-light);
+            transform: scale(1.2);
+        }
+
         .nav-page-indicator {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: 0.75rem;
+            letter-spacing: 2px;
             color: var(--jungle);
             opacity: 0.5;
             min-width: 50px;
             text-align: center;
+            font-weight: 400;
         }
-        .page-number {
-            position: absolute;
-            bottom: 36px;
-            right: 48px;
-            font-family: 'Playfair Display', serif;
-            font-size: 0.85rem;
-            opacity: 0.35;
-            background: rgba(255, 255, 255, 0.60);
-            padding: 6px 18px;
-            border-radius: 40px;
+
+        /* ============================================================ */
+        /* СТРАНИЦА 01 — ГЛАВНАЯ */
+        /* ============================================================ */
+        .page-hero {
+            background: var(--cream);
+            position: relative;
         }
-        /* ===== СТРАНИЦА 1 ===== */
         .page-hero .page-inner {
+            padding: 40px 60px;
+            display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            align-items: center;
         }
-        .hero-bg {
+
+        .hero-bg-image {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, transparent 60%),
-                url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1400&q=80') center/cover;
+            background:
+                linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
+                url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1400&q=80') center/cover no-repeat;
             z-index: 0;
         }
+        .hero-bg-image::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: radial-gradient(ellipse at 70% 50%, rgba(49, 84, 58, 0.04) 0%, transparent 70%);
+            pointer-events: none;
+        }
+
+        .hero-left {
+            position: relative;
+            z-index: 2;
+            padding: 20px 0;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--jungle);
+            background: rgba(49, 84, 58, 0.08);
+            padding: 6px 20px;
+            border-radius: 40px;
+            margin-bottom: 28px;
+            border: 1px solid rgba(49, 84, 58, 0.06);
+        }
+
         .hero-logo {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: clamp(2.8rem, 6vw, 4.8rem);
+            font-weight: 700;
             color: var(--jungle);
             line-height: 1.05;
+            margin-bottom: 12px;
+            letter-spacing: -1px;
         }
         .hero-logo span {
             font-weight: 300;
+            color: var(--jungle-light);
         }
+
         .hero-tagline {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: clamp(1.2rem, 2.2vw, 2rem);
+            font-weight: 400;
             color: #4A5F4A;
+            margin-bottom: 32px;
             font-style: italic;
-            margin: 16px 0 32px;
+            line-height: 1.4;
         }
+
         .hero-btn {
             display: inline-block;
             background: var(--jungle);
             color: #fff;
+            font-family: var(--font-sans);
             font-weight: 600;
+            font-size: 0.9rem;
             padding: 16px 44px;
             border-radius: 60px;
-            text-decoration: none;
-            transition: 0.3s;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
             box-shadow: 0 8px 32px rgba(49, 84, 58, 0.25);
+            letter-spacing: 0.5px;
+            text-decoration: none;
         }
         .hero-btn:hover {
-            background: #4A7354;
+            background: var(--jungle-light);
             transform: translateY(-3px);
+            box-shadow: 0 14px 44px rgba(49, 84, 58, 0.35);
         }
-        .hero-image {
+        .hero-btn i {
+            margin-left: 10px;
+            transition: transform 0.3s ease;
+        }
+        .hero-btn:hover i {
+            transform: translateX(6px);
+        }
+
+        .hero-right {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .hero-image-frame {
             width: 100%;
+            max-width: 520px;
             aspect-ratio: 4/3;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: 0 24px 64px rgba(49, 84, 58, 0.12);
+            background: var(--milk);
+            position: relative;
         }
-        .hero-image img {
+        .hero-image-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        /* ===== СТРАНИЦА 2 ===== */
-        .page-about .page-inner {
-            grid-template-columns: 1fr 1fr;
+        .hero-image-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(49, 84, 58, 0.04) 0%, transparent 60%);
+            pointer-events: none;
         }
-        .about-text h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 3.5vw, 3.2rem);
+
+        /* декоративные листья */
+        .leaf-deco {
+            position: absolute;
+            z-index: 1;
+            pointer-events: none;
+            font-size: 8rem;
             color: var(--jungle);
         }
+        .leaf-deco-1 {
+            bottom: -20px;
+            right: -10px;
+            transform: rotate(20deg);
+            font-size: 10rem;
+            opacity: 0.12;
+        }
+        .leaf-deco-2 {
+            top: 10%;
+            left: -30px;
+            transform: rotate(-40deg);
+            font-size: 6rem;
+            opacity: 0.08;
+        }
+        .leaf-deco-3 {
+            bottom: 30%;
+            right: 5%;
+            transform: rotate(60deg);
+            font-size: 5rem;
+            opacity: 0.06;
+        }
+
+        /* ============================================================ */
+        /* СТРАНИЦА 02 — О НАС */
+        /* ============================================================ */
+        .page-about .page-inner {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .about-text h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: 600;
+            color: var(--jungle);
+            line-height: 1.2;
+            margin-bottom: 20px;
+        }
         .about-text p {
+            font-size: 1rem;
             font-weight: 300;
+            color: #3D4F3D;
             line-height: 1.9;
-            margin: 16px 0 28px;
+            margin-bottom: 28px;
             max-width: 480px;
         }
+
         .about-icons {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 16px 30px;
+            gap: 20px 30px;
         }
         .about-icon-item {
             display: flex;
             align-items: center;
             gap: 14px;
         }
-        .about-icon-item .icon {
+        .about-icon-item .icon-wrap {
             width: 44px;
             height: 44px;
             border-radius: 50%;
@@ -216,72 +416,142 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 1.1rem;
             color: var(--jungle);
+            flex-shrink: 0;
+            border: 1px solid rgba(49, 84, 58, 0.05);
         }
+        .about-icon-item .label {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #2D3A2D;
+        }
+
         .about-image {
             width: 100%;
             aspect-ratio: 4/3;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-soft);
+            background: var(--milk);
         }
         .about-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        /* ===== СТРАНИЦА 3 ===== */
+
+        /* ============================================================ */
+        /* СТРАНИЦА 03 — УСЛУГИ */
+        /* ============================================================ */
+        .page-services .page-inner {
+            padding: 40px 60px;
+        }
+
         .services-header {
             text-align: center;
             margin-bottom: 40px;
         }
+        .services-header .label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--jungle);
+            opacity: 0.5;
+            margin-bottom: 8px;
+            display: block;
+        }
         .services-header h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 600;
             color: var(--jungle);
         }
+
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 24px;
             max-width: 1000px;
             margin: 0 auto;
+            width: 100%;
         }
+
         .service-card {
             background: var(--white);
             border-radius: 18px;
-            padding: 32px 24px;
+            padding: 32px 24px 28px;
             text-align: center;
-            box-shadow: 0 8px 32px rgba(49, 84, 58, 0.07);
-            transition: 0.3s;
+            box-shadow: var(--shadow-card);
+            border: 1px solid rgba(49, 84, 58, 0.04);
+            transition: all 0.4s ease;
+            cursor: default;
         }
         .service-card:hover {
             transform: translateY(-6px);
+            box-shadow: 0 16px 48px rgba(49, 84, 58, 0.10);
+            border-color: rgba(49, 84, 58, 0.10);
         }
         .service-card .icon {
             font-size: 2.2rem;
-            display: block;
+            color: var(--jungle);
             margin-bottom: 14px;
+            display: block;
+            opacity: 0.7;
         }
         .service-card h4 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
+            font-size: 1.05rem;
+            font-weight: 600;
             color: var(--jungle);
+            margin-bottom: 6px;
         }
         .service-card p {
             font-size: 0.8rem;
             font-weight: 300;
             color: #5A6F5A;
-            margin-top: 6px;
+            line-height: 1.5;
         }
-        /* ===== СТРАНИЦА 4 ===== */
+
+        /* ============================================================ */
+        /* СТРАНИЦА 04 — ПОЧЕМУ ВЫБИРАЮТ НАС */
+        /* ============================================================ */
         .page-why .page-inner {
+            display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .why-left {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+        .why-left .label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--jungle);
+            opacity: 0.4;
+            margin-bottom: 12px;
+            display: block;
         }
         .why-left h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: clamp(2rem, 3.5vw, 3.2rem);
+            font-weight: 600;
             color: var(--jungle);
+            line-height: 1.15;
             margin-bottom: 28px;
+        }
+
+        .why-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
         }
         .why-item {
             display: flex;
@@ -289,8 +559,15 @@
             gap: 16px;
             padding: 12px 18px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.5);
-            margin-bottom: 12px;
+            background: rgba(255, 255, 255, 0.50);
+            backdrop-filter: blur(4px);
+            border: 1px solid rgba(49, 84, 58, 0.04);
+            transition: all 0.3s ease;
+        }
+        .why-item:hover {
+            background: rgba(255, 255, 255, 0.80);
+            border-color: rgba(49, 84, 58, 0.10);
+            transform: translateX(4px);
         }
         .why-item .icon {
             width: 40px;
@@ -300,50 +577,197 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.9rem;
             color: var(--jungle);
+            flex-shrink: 0;
         }
-        .why-image {
+        .why-item .text {
+            font-size: 0.92rem;
+            font-weight: 500;
+            color: #2D3A2D;
+        }
+
+        .why-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .why-image-composition {
+            position: relative;
             width: 100%;
+            max-width: 480px;
             aspect-ratio: 1/1;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-soft);
+            background: var(--milk);
         }
-        .why-image img {
+        .why-image-composition img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        /* ===== СТРАНИЦА 5 ===== */
+        .why-image-composition .leaf-overlay {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            background: radial-gradient(ellipse at 30% 70%, rgba(49, 84, 58, 0.05) 0%, transparent 60%);
+        }
+        .why-image-composition .deco-leaf {
+            position: absolute;
+            font-size: 4rem;
+            color: var(--jungle);
+            opacity: 0.10;
+            pointer-events: none;
+        }
+        .why-image-composition .deco-leaf-1 {
+            bottom: -10px;
+            right: -10px;
+            transform: rotate(30deg);
+            font-size: 6rem;
+        }
+        .why-image-composition .deco-leaf-2 {
+            top: -10px;
+            left: -10px;
+            transform: rotate(-20deg);
+            font-size: 5rem;
+        }
+
+        /* ============================================================ */
+        /* СТРАНИЦА 05 — НАША КЛИНИКА (ГАЛЕРЕЯ) */
+        /* ============================================================ */
+        .page-gallery .page-inner {
+            padding: 40px 60px;
+        }
+
+        .gallery-header {
+            text-align: center;
+            margin-bottom: 36px;
+        }
+        .gallery-header .label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--jungle);
+            opacity: 0.4;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .gallery-header h2 {
+            font-family: var(--font-serif);
+            font-size: clamp(2rem, 3.5vw, 3rem);
+            font-weight: 600;
+            color: var(--jungle);
+        }
+        .gallery-header p {
+            font-size: 1rem;
+            font-weight: 300;
+            color: #5A6F5A;
+            max-width: 600px;
+            margin: 8px auto 0;
+        }
+
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 20px;
             max-width: 1000px;
             margin: 0 auto;
+            width: 100%;
         }
+
         .gallery-item {
-            aspect-ratio: 4/3;
             border-radius: 18px;
             overflow: hidden;
-            box-shadow: var(--shadow);
-            transition: 0.3s;
+            aspect-ratio: 4/3;
+            box-shadow: var(--shadow-card);
+            background: var(--milk);
+            transition: all 0.5s ease;
+            position: relative;
         }
         .gallery-item:hover {
             transform: scale(1.02);
+            box-shadow: 0 16px 48px rgba(49, 84, 58, 0.12);
         }
         .gallery-item img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            transition: all 0.6s ease;
         }
-        /* ===== СТРАНИЦА 6 ===== */
+        .gallery-item:hover img {
+            transform: scale(1.06);
+        }
+        .gallery-item .caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            background: linear-gradient(0deg, rgba(0, 0, 0, 0.20) 0%, transparent 100%);
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            opacity: 0;
+            transition: all 0.4s ease;
+        }
+        .gallery-item:hover .caption {
+            opacity: 1;
+        }
+
+        /* ============================================================ */
+        /* СТРАНИЦА 06 — КОНТАКТЫ */
+        /* ============================================================ */
+        .page-contacts {
+            background: var(--cream);
+            position: relative;
+            overflow: hidden;
+        }
         .page-contacts .page-inner {
+            display: grid;
             grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .contacts-bg-leaf {
+            position: absolute;
+            right: -5%;
+            bottom: -10%;
+            font-size: 30rem;
+            color: var(--jungle);
+            opacity: 0.04;
+            pointer-events: none;
+            transform: rotate(15deg);
+        }
+        .contacts-bg-leaf-2 {
+            position: absolute;
+            left: -5%;
+            top: -10%;
+            font-size: 20rem;
+            color: var(--jungle);
+            opacity: 0.03;
+            pointer-events: none;
+            transform: rotate(-30deg);
+        }
+
+        .contacts-left .label {
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            color: var(--jungle);
+            opacity: 0.4;
+            margin-bottom: 12px;
+            display: block;
         }
         .contacts-left h2 {
-            font-family: 'Playfair Display', serif;
+            font-family: var(--font-serif);
             font-size: clamp(2.4rem, 4.5vw, 4rem);
+            font-weight: 600;
             color: var(--jungle);
             line-height: 1.1;
             margin-bottom: 28px;
@@ -352,6 +776,7 @@
             font-weight: 300;
             font-style: italic;
         }
+
         .contact-item {
             display: flex;
             align-items: center;
@@ -366,99 +791,428 @@
             display: flex;
             align-items: center;
             justify-content: center;
+            font-size: 0.95rem;
             color: var(--jungle);
+            flex-shrink: 0;
+            border: 1px solid rgba(49, 84, 58, 0.04);
+        }
+        .contact-item .text {
+            font-size: 0.95rem;
+            font-weight: 400;
+            color: #3D4F3D;
         }
         .contact-item .text strong {
+            font-weight: 600;
+            color: var(--jungle);
             display: block;
             font-size: 0.7rem;
             text-transform: uppercase;
             letter-spacing: 1px;
-            color: var(--jungle);
+            margin-bottom: 1px;
         }
-        .contacts-image {
+        .contact-item .text .sub {
+            font-size: 0.85rem;
+            font-weight: 300;
+            color: #5A6F5A;
+        }
+
+        .contacts-right {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .contacts-image-frame {
             width: 100%;
+            max-width: 420px;
             aspect-ratio: 4/3;
             border-radius: 24px;
             overflow: hidden;
-            box-shadow: var(--shadow);
+            box-shadow: var(--shadow-soft);
+            background: var(--milk);
+            position: relative;
         }
-        .contacts-image img {
+        .contacts-image-frame img {
             width: 100%;
             height: 100%;
             object-fit: cover;
         }
-        /* ===== АДАПТИВ ===== */
-        @media (max-width: 768px) {
-            .page {
-                padding: 24px 28px;
+        .contacts-image-frame::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(49, 84, 58, 0.05) 0%, transparent 60%);
+            pointer-events: none;
+        }
+
+        /* ===== ФИНАЛЬНАЯ ФРАЗА ===== */
+        .final-note {
+            margin-top: 20px;
+            font-family: var(--font-serif);
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: var(--jungle);
+            opacity: 0.7;
+            font-style: italic;
+        }
+        .final-note strong {
+            font-weight: 700;
+            opacity: 1;
+        }
+
+        /* ============================================================ */
+        /* АДАПТИВНОСТЬ */
+        /* ============================================================ */
+        @media (max-width: 1024px) {
+            .page-inner {
+                padding: 30px 40px !important;
             }
-            .page-hero .page-inner,
-            .page-about .page-inner,
-            .page-why .page-inner,
+            .page-hero .page-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .page-about .page-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .page-why .page-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .page-contacts .page-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 30px;
+            }
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 16px;
+            }
+            .service-card {
+                padding: 24px 16px 20px;
+            }
+            .gallery-grid {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 14px;
+            }
+            .hero-image-frame {
+                max-width: 100%;
+            }
+            .why-image-composition {
+                max-width: 100%;
+            }
+            .contacts-image-frame {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .page-inner {
+                padding: 24px 28px !important;
+            }
+            .page-hero .page-inner {
+                grid-template-columns: 1fr;
+                gap: 20px;
+                padding-top: 60px !important;
+            }
+            .page-about .page-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+            .page-why .page-inner {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
             .page-contacts .page-inner {
                 grid-template-columns: 1fr;
+                gap: 24px;
+                padding-top: 40px !important;
             }
-            .hero-image,
-            .about-image,
-            .why-image,
-            .contacts-image {
+
+            .hero-left {
+                order: 2;
+                text-align: center;
+            }
+            .hero-right {
+                order: 1;
+            }
+            .hero-image-frame {
+                max-width: 320px;
+                margin: 0 auto;
+            }
+            .hero-logo {
+                font-size: 2.4rem;
+            }
+            .hero-tagline {
+                font-size: 1.1rem;
+            }
+            .hero-btn {
+                padding: 14px 32px;
+                font-size: 0.85rem;
+            }
+            .leaf-deco {
+                display: none;
+            }
+
+            .about-text {
+                text-align: center;
+            }
+            .about-text p {
+                max-width: 100%;
+                margin-left: auto;
+                margin-right: auto;
+            }
+            .about-icons {
+                grid-template-columns: 1fr 1fr;
+                gap: 12px;
+            }
+            .about-icon-item {
+                justify-content: center;
+            }
+            .about-image {
                 max-width: 400px;
                 margin: 0 auto;
             }
+
             .services-grid {
                 grid-template-columns: repeat(2, 1fr);
                 gap: 14px;
             }
+            .service-card {
+                padding: 20px 14px 18px;
+            }
+            .service-card .icon {
+                font-size: 1.6rem;
+            }
+            .service-card h4 {
+                font-size: 0.9rem;
+            }
+            .service-card p {
+                font-size: 0.75rem;
+            }
+
+            .why-left {
+                text-align: center;
+            }
+            .why-left h2 {
+                font-size: 1.8rem;
+            }
+            .why-list {
+                align-items: center;
+            }
+            .why-item {
+                width: 100%;
+                max-width: 360px;
+                justify-content: center;
+            }
+            .why-image-composition {
+                max-width: 340px;
+                margin: 0 auto;
+            }
+
             .gallery-grid {
                 grid-template-columns: repeat(2, 1fr);
-                gap: 14px;
+                gap: 12px;
             }
+            .gallery-item {
+                aspect-ratio: 4/3;
+            }
+
+            .contacts-left {
+                text-align: center;
+            }
+            .contacts-left h2 {
+                font-size: 2rem;
+            }
+            .contact-item {
+                justify-content: center;
+            }
+            .contacts-image-frame {
+                max-width: 340px;
+                margin: 0 auto;
+            }
+            .contacts-bg-leaf,
+            .contacts-bg-leaf-2 {
+                display: none;
+            }
+
             .nav-controls {
                 bottom: 24px;
                 padding: 10px 16px;
                 gap: 12px;
+                border-radius: 40px;
             }
             .nav-btn {
                 width: 36px;
                 height: 36px;
+                font-size: 0.8rem;
             }
+            .nav-dots {
+                gap: 6px;
+                padding: 0 8px;
+            }
+            .nav-dot {
+                width: 6px;
+                height: 6px;
+            }
+            .nav-dot.active {
+                width: 20px;
+            }
+            .nav-page-indicator {
+                font-size: 0.65rem;
+                min-width: 40px;
+            }
+
             .page-number {
                 bottom: 80px;
                 right: 20px;
+                font-size: 0.7rem;
+                padding: 4px 14px;
             }
         }
+
         @media (max-width: 480px) {
-            .page {
-                padding: 20px 16px;
+            .page-inner {
+                padding: 20px 16px !important;
             }
             .services-grid {
                 grid-template-columns: 1fr 1fr;
                 gap: 10px;
             }
             .service-card {
-                padding: 16px 12px;
+                padding: 16px 10px 14px;
             }
             .service-card .icon {
-                font-size: 1.6rem;
+                font-size: 1.4rem;
+                margin-bottom: 8px;
+            }
+            .service-card h4 {
+                font-size: 0.8rem;
+            }
+            .service-card p {
+                font-size: 0.7rem;
             }
             .gallery-grid {
+                grid-template-columns: 1fr 1fr;
                 gap: 8px;
+            }
+            .gallery-item {
+                aspect-ratio: 4/3;
+                border-radius: 12px;
+            }
+            .hero-image-frame {
+                max-width: 260px;
+            }
+            .about-image {
+                max-width: 300px;
+            }
+            .why-image-composition {
+                max-width: 280px;
+            }
+            .contacts-image-frame {
+                max-width: 280px;
+            }
+            .hero-logo {
+                font-size: 2rem;
+            }
+            .hero-tagline {
+                font-size: 0.95rem;
             }
             .hero-btn {
                 padding: 12px 26px;
-                font-size: 0.85rem;
+                font-size: 0.8rem;
+            }
+            .about-icon-item .label {
+                font-size: 0.75rem;
+            }
+            .about-icon-item .icon-wrap {
+                width: 36px;
+                height: 36px;
+                font-size: 0.9rem;
             }
             .nav-controls {
                 padding: 8px 12px;
                 gap: 8px;
+                bottom: 16px;
             }
             .nav-btn {
                 width: 32px;
                 height: 32px;
+                font-size: 0.7rem;
+            }
+            .nav-dots {
+                gap: 4px;
+                padding: 0 4px;
+            }
+            .nav-dot {
+                width: 5px;
+                height: 5px;
+            }
+            .nav-dot.active {
+                width: 16px;
+            }
+            .nav-page-indicator {
+                font-size: 0.6rem;
+                min-width: 32px;
+            }
+            .page-number {
+                bottom: 72px;
+                right: 14px;
+                font-size: 0.6rem;
+                padding: 3px 10px;
+            }
+            .contacts-left h2 {
+                font-size: 1.6rem;
+            }
+            .contact-item .text {
+                font-size: 0.85rem;
+            }
+            .contact-item .icon {
+                width: 34px;
+                height: 34px;
                 font-size: 0.8rem;
             }
+            .final-note {
+                font-size: 1rem;
+            }
         }
-        /* ===== ПЕРЕХОД МЕЖДУ СТРАНИЦАМИ ===== */
+
+        /* ===== ФОКУС ДЛЯ КЛАВИАТУРЫ ===== */
+        .nav-btn:focus-visible {
+            outline: 2px solid var(--jungle);
+            outline-offset: 2px;
+        }
+
+        /* ===== СКРЫТИЕ СКРОЛЛБАРА ===== */
+        .magazine::-webkit-scrollbar {
+            display: none;
+        }
+        .magazine {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        /* ===== ВСПОМОГАТЕЛЬНЫЙ КЛАСС ===== */
+        .sr-only {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip: rect(0, 0, 0, 0);
+            border: 0;
+        }
+
+        /* Ленивая загрузка с размытием */
+        .lazy {
+            filter: blur(4px);
+            transition: filter 0.6s ease;
+        }
+        .lazy.loaded {
+            filter: blur(0);
+        }
+
+        /* ===== ОВЕРЛЕЙ ПЕРЕХОДА ===== */
         .page-transition {
             position: fixed;
             inset: 0;
@@ -472,118 +1226,257 @@
             opacity: 1;
             pointer-events: all;
         }
-        .lazy {
-            filter: blur(4px);
-            transition: filter 0.6s;
+
+        /* ===== ПОДСКАЗКА ДЛЯ СВАЙПА ===== */
+        .swipe-hint {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 0.7rem;
+            color: var(--jungle);
+            opacity: 0.25;
+            letter-spacing: 2px;
+            font-weight: 300;
+            animation: pulse-hint 2.5s ease-in-out infinite;
+            z-index: 5;
+            display: none;
         }
-        .lazy.loaded {
-            filter: blur(0);
+        @keyframes pulse-hint {
+            0%,
+            100% {
+                opacity: 0.15;
+                transform: translateX(-50%) translateY(0);
+            }
+            50% {
+                opacity: 0.4;
+                transform: translateX(-50%) translateY(-4px);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .swipe-hint {
+                display: block;
+                bottom: 80px;
+            }
         }
     </style>
 </head>
 <body>
 
+    <!-- ===== ОВЕРЛЕЙ ПЕРЕХОДА ===== -->
     <div class="page-transition" id="pageTransition"></div>
 
+    <!-- ===== ЖУРНАЛ ===== -->
     <div class="magazine" id="magazine">
+
+        <!-- ===== ОБЁРТКА СТРАНИЦ ===== -->
         <div class="pages-wrapper" id="pagesWrapper">
 
-            <!-- ===== СТРАНИЦА 1 ===== -->
-            <section class="page page-hero" data-index="0">
-                <div class="hero-bg"></div>
+            <!-- ============================================================ -->
+            <!-- СТРАНИЦА 01 — ГЛАВНАЯ -->
+            <!-- ============================================================ -->
+            <section class="page page-hero" data-index="0" aria-label="Главная страница">
+                <div class="hero-bg-image"></div>
+                <div class="leaf-deco leaf-deco-1">🌿</div>
+                <div class="leaf-deco leaf-deco-2">🌱</div>
+                <div class="leaf-deco leaf-deco-3">🍃</div>
                 <div class="page-inner">
-                    <div>
-                        <h1 class="hero-logo">Стоматология<br /><span>Доктор</span></h1>
-                        <p class="hero-tagline">«Здоровая улыбка начинается с заботы»</p>
+                    <div class="hero-left">
+                        <div class="hero-badge">✦ Премиальная стоматология</div>
+                        <h1 class="hero-logo">
+                            Доктор<br /><span>СТОМАТОЛОГИЯ</span>
+                        </h1>
+                        <p class="hero-tagline">Заботимся о вашей улыбке<br />с любовью и профессионализмом</p>
                         <a href="#" class="hero-btn" onclick="event.preventDefault(); goToPage(5);">
                             Записаться на прием <i class="fas fa-arrow-right"></i>
                         </a>
                     </div>
-                    <div class="hero-image">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Клиника" loading="lazy" class="lazy" />
+                    <div class="hero-right">
+                        <div class="hero-image-frame">
+                            <img
+                            src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80"
+                            alt="Уютная стоматологическая клиника с растениями"
+                            loading="lazy"
+                            class="lazy"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div class="page-number"><span>01</span> / 06</div>
+                <div class="swipe-hint">← свайп →</div>
             </section>
 
-            <!-- ===== СТРАНИЦА 2 ===== -->
-            <section class="page page-about" data-index="1">
+            <!-- ============================================================ -->
+            <!-- СТРАНИЦА 02 — О НАС -->
+            <!-- ============================================================ -->
+            <section class="page page-about" data-index="1" aria-label="О клинике">
                 <div class="page-inner">
                     <div class="about-text">
-                        <h2>Современная стоматология с заботой о каждом</h2>
-                        <p>Мы сочетаем передовые технологии и тепло человеческого подхода. В нашей клинике каждый пациент чувствует себя в безопасности.</p>
+                        <span class="hero-badge" style="margin-bottom:16px;">О нас</span>
+                        <h2>Стоматология «Доктор»</h2>
+                        <p>Стоматология «Доктор» — это современный подход к лечению зубов и забота о каждом пациенте.</p>
                         <div class="about-icons">
-                            <div class="about-icon-item"><div class="icon"><i class="fas fa-user-md"></i></div> Опытные врачи</div>
-                            <div class="about-icon-item"><div class="icon"><i class="fas fa-microscope"></i></div> Современное оборудование</div>
-                            <div class="about-icon-item"><div class="icon"><i class="fas fa-heartbeat"></i></div> Безболезненное лечение</div>
-                            <div class="about-icon-item"><div class="icon"><i class="fas fa-hand-holding-heart"></i></div> Индивидуальный подход</div>
+                            <div class="about-icon-item">
+                                <div class="icon-wrap"><i class="fas fa-user-md"></i></div>
+                                <span class="label">Опытные врачи</span>
+                            </div>
+                            <div class="about-icon-item">
+                                <div class="icon-wrap"><i class="fas fa-microscope"></i></div>
+                                <span class="label">Современное оборудование</span>
+                            </div>
+                            <div class="about-icon-item">
+                                <div class="icon-wrap"><i class="fas fa-heartbeat"></i></div>
+                                <span class="label">Безболезненное лечение</span>
+                            </div>
+                            <div class="about-icon-item">
+                                <div class="icon-wrap"><i class="fas fa-hand-holding-heart"></i></div>
+                                <span class="label">Индивидуальный подход</span>
+                            </div>
                         </div>
                     </div>
                     <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Интерьер клиники" loading="lazy" class="lazy" />
+                        <img
+                        src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80"
+                        alt="Интерьер стоматологической клиники"
+                        loading="lazy"
+                        class="lazy"
+                        />
                     </div>
                 </div>
                 <div class="page-number"><span>02</span> / 06</div>
             </section>
 
-            <!-- ===== СТРАНИЦА 3 ===== -->
-            <section class="page" data-index="2">
-                <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;">
+            <!-- ============================================================ -->
+            <!-- СТРАНИЦА 03 — УСЛУГИ -->
+            <!-- ============================================================ -->
+            <section class="page page-services" data-index="2" aria-label="Услуги">
+                <div class="page-inner">
                     <div class="services-header">
+                        <span class="label">Наши услуги</span>
                         <h2>Комплексная стоматология</h2>
                     </div>
                     <div class="services-grid">
-                        <div class="service-card"><span class="icon">🦷</span><h4>Лечение зубов</h4><p>Терапия любой сложности</p></div>
-                        <div class="service-card"><span class="icon">🔩</span><h4>Имплантация</h4><p>Мировые бренды с гарантией</p></div>
-                        <div class="service-card"><span class="icon">🔄</span><h4>Ортодонтия</h4><p>Эстетическое выравнивание</p></div>
-                        <div class="service-card"><span class="icon">✨</span><h4>Отбеливание</h4><p>Безопасные методики</p></div>
-                        <div class="service-card"><span class="icon">🔬</span><h4>Хирургия</h4><p>Щадящие операции</p></div>
-                        <div class="service-card"><span class="icon">🧼</span><h4>Проф. чистка</h4><p>Air Flow гигиена</p></div>
+                        <div class="service-card">
+                            <span class="icon">🦷</span>
+                            <h4>Терапия</h4>
+                            <p>Лечение зубов любой сложности</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="icon">🔬</span>
+                            <h4>Хирургия</h4>
+                            <p>Щадящие операции с минимальным вмешательством</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="icon">🦷</span>
+                            <h4>Ортопедия</h4>
+                            <p>Восстановление и протезирование</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="icon">🔄</span>
+                            <h4>Ортодонтия</h4>
+                            <p>Эстетическое выравнивание зубов</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="icon">🔩</span>
+                            <h4>Имплантация</h4>
+                            <p>Установка имплантов мировых брендов</p>
+                        </div>
+                        <div class="service-card">
+                            <span class="icon">✨</span>
+                            <h4>Отбеливание</h4>
+                            <p>Безопасные методики для сияющей улыбки</p>
+                        </div>
                     </div>
                 </div>
                 <div class="page-number"><span>03</span> / 06</div>
             </section>
 
-            <!-- ===== СТРАНИЦА 4 ===== -->
-            <section class="page page-why" data-index="3">
+            <!-- ============================================================ -->
+            <!-- СТРАНИЦА 04 — ПОЧЕМУ ВЫБИРАЮТ НАС -->
+            <!-- ============================================================ -->
+            <section class="page page-why" data-index="3" aria-label="Почему выбирают нас">
                 <div class="page-inner">
                     <div class="why-left">
-                        <h2>Выбирают доверие и качество</h2>
-                        <div class="why-item"><div class="icon"><i class="fas fa-bullseye"></i></div> Высокая точность лечения</div>
-                        <div class="why-item"><div class="icon"><i class="fas fa-shield-alt"></i></div> Комфорт и безопасность</div>
-                        <div class="why-item"><div class="icon"><i class="fas fa-hand-holding-usd"></i></div> Честные цены</div>
-                        <div class="why-item"><div class="icon"><i class="fas fa-award"></i></div> Гарантия качества</div>
+                        <span class="label">Почему выбирают нас?</span>
+                        <h2>Высокое качество<br />и забота о вас</h2>
+                        <div class="why-list">
+                            <div class="why-item">
+                                <div class="icon"><i class="fas fa-bullseye"></i></div>
+                                <span class="text">Высокое качество лечения</span>
+                            </div>
+                            <div class="why-item">
+                                <div class="icon"><i class="fas fa-shield-alt"></i></div>
+                                <span class="text">Комфорт и безопасность</span>
+                            </div>
+                            <div class="why-item">
+                                <div class="icon"><i class="fas fa-hand-holding-usd"></i></div>
+                                <span class="text">Честные цены</span>
+                            </div>
+                            <div class="why-item">
+                                <div class="icon"><i class="fas fa-award"></i></div>
+                                <span class="text">Гарантия на услуги</span>
+                            </div>
+                        </div>
                     </div>
-                    <div class="why-image">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Зуб и зелень" loading="lazy" class="lazy" />
+                    <div class="why-right">
+                        <div class="why-image-composition">
+                            <img
+                            src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80"
+                            alt="Зуб на камне среди зелени"
+                            loading="lazy"
+                            class="lazy"
+                            />
+                            <div class="leaf-overlay"></div>
+                            <div class="deco-leaf deco-leaf-1">🌿</div>
+                            <div class="deco-leaf deco-leaf-2">🍃</div>
+                        </div>
                     </div>
                 </div>
                 <div class="page-number"><span>04</span> / 06</div>
             </section>
 
-            <!-- ===== СТРАНИЦА 5 ===== -->
-            <section class="page" data-index="4">
-                <div class="page-inner" style="display:flex;flex-direction:column;justify-content:center;">
-                    <div class="services-header">
-                        <h2>Пространство уюта и заботы</h2>
+            <!-- ============================================================ -->
+            <!-- СТРАНИЦА 05 — НАША КЛИНИКА (ГАЛЕРЕЯ) -->
+            <!-- ============================================================ -->
+            <section class="page page-gallery" data-index="4" aria-label="Наша клиника">
+                <div class="page-inner">
+                    <div class="gallery-header">
+                        <span class="label">Наша клиника</span>
+                        <h2>Уютная атмосфера, современное оборудование</h2>
+                        <p>и внимательное отношение к каждому пациенту.</p>
                     </div>
                     <div class="gallery-grid">
-                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Ресепшен" loading="lazy" class="lazy" /></div>
-                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80" alt="Кабинет" loading="lazy" class="lazy" /></div>
-                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Зона ожидания" loading="lazy" class="lazy" /></div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Ресепшен клиники" loading="lazy" class="lazy" />
+                            <div class="caption">Уютная зона ресепшен</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80" alt="Кабинет врача" loading="lazy" class="lazy" />
+                            <div class="caption">Современный кабинет</div>
+                        </div>
+                        <div class="gallery-item">
+                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Зона ожидания" loading="lazy" class="lazy" />
+                            <div class="caption">Зона ожидания с растениями</div>
+                        </div>
                     </div>
                 </div>
                 <div class="page-number"><span>05</span> / 06</div>
             </section>
 
-            <!-- ===== СТРАНИЦА 6 ===== -->
-            <section class="page page-contacts" data-index="5">
+            <!-- ============================================================ -->
+            <!-- СТРАНИЦА 06 — КОНТАКТЫ -->
+            <!-- ============================================================ -->
+            <section class="page page-contacts" data-index="5" aria-label="Контакты">
+                <div class="contacts-bg-leaf">🌿</div>
+                <div class="contacts-bg-leaf-2">🍃</div>
                 <div class="page-inner">
                     <div class="contacts-left">
-                        <h2>Ждем вас в <span>стоматологии Доктор</span></h2>
+                        <span class="label">Контакты</span>
+                        <h2>Ждём вас<br /><span>в стоматологии</span><br />«Доктор»!</h2>
                         <div class="contact-item">
                             <div class="icon"><i class="fas fa-location-dot"></i></div>
-                            <div class="text"><strong>Адрес</strong>ул. Зеленая, 15, Москва</div>
+                            <div class="text"><strong>Адрес</strong>г. Москва, ул. Зелёная, 15</div>
                         </div>
                         <div class="contact-item">
                             <div class="icon"><i class="fas fa-phone"></i></div>
@@ -591,128 +1484,214 @@
                         </div>
                         <div class="contact-item">
                             <div class="icon"><i class="fas fa-clock"></i></div>
-                            <div class="text"><strong>Часы работы</strong>Пн–Вс 09:00 – 21:00</div>
+                            <div class="text"><strong>Часы работы</strong>ежедневно с 9:00 до 21:00</div>
+                        </div>
+                        <div class="contact-item">
+                            <div class="icon"><i class="fas fa-globe"></i></div>
+                            <div class="text"><strong>Сайт</strong>doctor-stom.ru</div>
+                        </div>
+                        <div class="final-note">
+                            <strong>Ждём вас</strong> в стоматологии «Доктор»!
                         </div>
                     </div>
-                    <div class="contacts-image">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Клиника" loading="lazy" class="lazy" />
+                    <div class="contacts-right">
+                        <div class="contacts-image-frame">
+                            <img
+                            src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80"
+                            alt="Уютный уголок клиники"
+                            loading="lazy"
+                            class="lazy"
+                            />
+                        </div>
                     </div>
                 </div>
                 <div class="page-number"><span>06</span> / 06</div>
             </section>
 
-        </div>
+        </div><!-- /pages-wrapper -->
 
-        <!-- ===== НАВИГАЦИЯ ===== -->
-        <nav class="nav-controls">
-            <button class="nav-btn" id="prevBtn" aria-label="Предыдущая"><i class="fas fa-chevron-left"></i></button>
-            <div class="nav-dots" id="navDots"></div>
+        <!-- ===== НАВИГАЦИОННЫЕ КНОПКИ ===== -->
+        <nav class="nav-controls" aria-label="Навигация по страницам">
+            <button class="nav-btn" id="prevBtn" aria-label="Предыдущая страница">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <div class="nav-dots" id="navDots" role="tablist">
+                <!-- генерируется скриптом -->
+            </div>
             <span class="nav-page-indicator" id="pageIndicator">01 / 06</span>
-            <button class="nav-btn" id="nextBtn" aria-label="Следующая"><i class="fas fa-chevron-right"></i></button>
+            <button class="nav-btn" id="nextBtn" aria-label="Следующая страница">
+                <i class="fas fa-chevron-right"></i>
+            </button>
         </nav>
-    </div>
 
+    </div><!-- /magazine -->
+
+    <!-- ============================================================ -->
+    <!-- СКРИПТ -->
+    <!-- ============================================================ -->
     <script>
         (function() {
+            'use strict';
+
             const wrapper = document.getElementById('pagesWrapper');
             const pages = document.querySelectorAll('.page');
-            const total = pages.length;
-            let current = 0,
-                transitioning = false;
+            const totalPages = pages.length;
+            let currentIndex = 0;
+            let isTransitioning = false;
+            let touchStartX = 0;
+            let touchStartY = 0;
 
+            // DOM-ссылки
             const prevBtn = document.getElementById('prevBtn');
             const nextBtn = document.getElementById('nextBtn');
             const dotsContainer = document.getElementById('navDots');
-            const indicator = document.getElementById('pageIndicator');
-            const overlay = document.getElementById('pageTransition');
+            const pageIndicator = document.getElementById('pageIndicator');
+            const transitionOverlay = document.getElementById('pageTransition');
 
-            // Создаём точки
-            for (let i = 0; i < total; i++) {
+            // ---- Создание точек ----
+            for (let i = 0; i < totalPages; i++) {
                 const dot = document.createElement('button');
-                dot.className = 'nav-dot' + (i === 0 ? ' active' : '');
+                dot.classList.add('nav-dot');
+                if (i === 0) dot.classList.add('active');
+                dot.setAttribute('role', 'tab');
                 dot.setAttribute('aria-label', `Перейти к странице ${i+1}`);
                 dot.dataset.index = i;
-                dot.onclick = () => goTo(parseInt(dot.dataset.index));
+                dot.addEventListener('click', function() {
+                    goToPage(parseInt(this.dataset.index));
+                });
                 dotsContainer.appendChild(dot);
             }
             const dots = dotsContainer.querySelectorAll('.nav-dot');
 
+            // ---- Обновление UI ----
             function updateUI(index) {
+                // сдвиг обёртки
                 wrapper.style.transform = `translateX(-${index * 100}vw)`;
-                dots.forEach((d, i) => d.classList.toggle('active', i === index));
-                indicator.textContent = `${String(index+1).padStart(2, '0')} / ${String(total).padStart(2, '0')}`;
-                prevBtn.disabled = index === 0;
-                nextBtn.disabled = index === total - 1;
-                pages.forEach((p, i) => {
-                    const num = p.querySelector('.page-number');
-                    if (num) num.innerHTML = `<span>${String(i+1).padStart(2, '0')}</span> / ${String(total).padStart(2, '0')}`;
+
+                // обновление точек
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+
+                // обновление индикатора
+                pageIndicator.textContent = `${String(index+1).padStart(2, '0')} / ${String(totalPages).padStart(2, '0')}`;
+
+                // состояние кнопок
+                prevBtn.disabled = (index === 0);
+                nextBtn.disabled = (index === totalPages - 1);
+
+                // обновление номеров страниц
+                pages.forEach((page, i) => {
+                    const num = page.querySelector('.page-number');
+                    if (num) {
+                        num.innerHTML =
+                            `<span>${String(i+1).padStart(2, '0')}</span> / ${String(totalPages).padStart(2, '0')}`;
+                    }
                 });
             }
 
-            function goTo(index) {
-                if (transitioning || index === current || index < 0 || index >= total) return;
-                transitioning = true;
-                overlay.classList.add('active');
+            // ---- Переход на страницу с анимацией ----
+            function goToPage(index) {
+                if (isTransitioning) return;
+                if (index < 0 || index >= totalPages) return;
+                if (index === currentIndex) return;
+
+                isTransitioning = true;
+
+                // затемнение
+                transitionOverlay.classList.add('active');
+
                 setTimeout(() => {
-                    current = index;
-                    updateUI(current);
-                    setTimeout(() => { overlay.classList.remove('active');
-                        transitioning = false; }, 300);
+                    currentIndex = index;
+                    updateUI(currentIndex);
+
+                    // снятие затемнения
+                    setTimeout(() => {
+                        transitionOverlay.classList.remove('active');
+                        isTransitioning = false;
+                    }, 300);
                 }, 300);
             }
 
-            function next() { if (current < total - 1) goTo(current + 1); }
+            // ---- Следующая / предыдущая ----
+            function nextPage() {
+                if (currentIndex < totalPages - 1) goToPage(currentIndex + 1);
+            }
 
-            function prev() { if (current > 0) goTo(current - 1); }
+            function prevPage() {
+                if (currentIndex > 0) goToPage(currentIndex - 1);
+            }
 
-            prevBtn.onclick = prev;
-            nextBtn.onclick = next;
+            // ---- Обработчики событий ----
+            prevBtn.addEventListener('click', prevPage);
+            nextBtn.addEventListener('click', nextPage);
 
-            // Клавиатура
-            document.addEventListener('keydown', e => {
-                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') { e.preventDefault();
-                    next(); }
-                if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') { e.preventDefault();
-                    prev(); }
+            // ---- Клавиатура ----
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+                    e.preventDefault();
+                    nextPage();
+                } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+                    e.preventDefault();
+                    prevPage();
+                }
             });
 
-            // Свайп
-            let touchX = 0;
-            document.getElementById('magazine').addEventListener('touchstart', e => {
-                touchX = e.changedTouches[0].screenX;
-            }, { passive: true });
-            document.getElementById('magazine').addEventListener('touchend', e => {
-                const dx = e.changedTouches[0].screenX - touchX;
-                if (Math.abs(dx) > 40) { if (dx < 0) next();
-                    else prev(); }
+            // ---- Свайп (тач) ----
+            const magazine = document.getElementById('magazine');
+            magazine.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+                touchStartY = e.changedTouches[0].screenY;
             }, { passive: true });
 
-            // Колёсико
-            let wheelLock = false;
-            document.getElementById('magazine').addEventListener('wheel', e => {
+            magazine.addEventListener('touchend', function(e) {
+                const deltaX = e.changedTouches[0].screenX - touchStartX;
+                const deltaY = e.changedTouches[0].screenY - touchStartY;
+                if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > 40) {
+                    if (deltaX < 0) nextPage();
+                    else prevPage();
+                }
+            }, { passive: true });
+
+            // ---- Горизонтальный скролл колесом мыши ----
+            let wheelTimeout = false;
+            magazine.addEventListener('wheel', function(e) {
                 if (Math.abs(e.deltaX) > Math.abs(e.deltaY)) {
                     e.preventDefault();
-                    if (!wheelLock) {
-                        wheelLock = true;
-                        if (e.deltaX > 30) next();
-                        else if (e.deltaX < -30) prev();
-                        setTimeout(() => { wheelLock = false; }, 600);
-                    }
+                    if (wheelTimeout) return;
+                    wheelTimeout = true;
+                    if (e.deltaX > 30) nextPage();
+                    else if (e.deltaX < -30) prevPage();
+                    setTimeout(() => { wheelTimeout = false; }, 600);
                 }
             }, { passive: false });
 
-            // Ленивая загрузка
-            document.querySelectorAll('img.lazy').forEach(img => {
-                if ('IntersectionObserver' in window) {
-                    new IntersectionObserver((entries) => {
-                        entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('loaded');
-                                this.disconnect(); } });
-                    }, { threshold: 0.1 }).observe(img);
-                } else img.classList.add('loaded');
-            });
+            // ---- Ленивая загрузка изображений ----
+            const lazyImages = document.querySelectorAll('img.lazy');
+            if ('IntersectionObserver' in window) {
+                const observer = new IntersectionObserver(function(entries) {
+                    entries.forEach(function(entry) {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('loaded');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.1 });
+                lazyImages.forEach(function(img) {
+                    observer.observe(img);
+                });
+            } else {
+                lazyImages.forEach(function(img) {
+                    img.classList.add('loaded');
+                });
+            }
 
+            // ---- Инициализация ----
             updateUI(0);
-            window.goToPage = goTo;
+
+            // ---- Делаем goToPage доступной глобально (для onclick) ----
+            window.goToPage = goToPage;
+
         })();
     </script>
 
