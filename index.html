@@ -168,13 +168,77 @@
             min-width: 50px;
             text-align: center;
         }
+        /* ----- PHOTO PLACEHOLDERS ----- */
+        .photo-placeholder {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        /* ----- SLIDE 1 HERO ----- */
         .hero-bg-image {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
-                url('https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=1400&q=80') center/cover no-repeat;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.30) 60%, transparent 100%),
+                url('10.jpg') center/cover no-repeat;
             z-index: 0;
         }
+        /* ----- SLIDE 2 ABOUT ----- */
+        .page-about .about-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
+                url('1.jpg') center/cover no-repeat;
+            z-index: 0;
+        }
+        .page-about .about-image img {
+            content: url('7.jpg');
+        }
+        /* ----- SLIDE 3 SERVICES ----- */
+        .page-services .services-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
+                url('1.jpg') center/cover no-repeat;
+            z-index: 0;
+        }
+        /* ----- SLIDE 4 WHY ----- */
+        .page-why .why-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
+                url('1.jpg') center/cover no-repeat;
+            z-index: 0;
+        }
+        .page-why .why-image-composition img {
+            content: url('4.jpg');
+        }
+        /* ----- SLIDE 5 GALLERY ----- */
+        .page-gallery .gallery-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
+                url('1.jpg') center/cover no-repeat;
+            z-index: 0;
+        }
+        .page-gallery .gallery-item:nth-child(1) img {
+            content: url('9.jpg');
+        }
+        .page-gallery .gallery-item:nth-child(2) img {
+            content: url('2.jpg');
+        }
+        .page-gallery .gallery-item:nth-child(3) img {
+            content: url('8.jpg');
+        }
+        /* ----- SLIDE 6 CONTACTS ----- */
+        .page-contacts .contacts-bg {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
+                url('1.jpg') center/cover no-repeat;
+            z-index: 0;
+        }
+        /* ----- COMMON STYLES ----- */
         .leaf-deco {
             position: absolute;
             z-index: 1;
@@ -357,6 +421,8 @@
             overflow: hidden;
             box-shadow: var(--shadow-soft);
             background: var(--milk);
+            position: relative;
+            z-index: 2;
         }
         .about-image img {
             width: 100%;
@@ -390,14 +456,17 @@
             max-width: 1000px;
             margin: 0 auto;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
         .service-card {
-            background: var(--white);
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
             border-radius: 18px;
             padding: 32px 24px 28px;
             text-align: center;
             box-shadow: var(--shadow-card);
-            border: 1px solid rgba(49, 84, 58, 0.04);
+            border: 1px solid rgba(49, 84, 58, 0.06);
             transition: all 0.4s ease;
             cursor: default;
         }
@@ -405,6 +474,7 @@
             transform: translateY(-6px);
             box-shadow: 0 16px 48px rgba(49, 84, 58, 0.10);
             border-color: rgba(49, 84, 58, 0.10);
+            background: rgba(255, 255, 255, 0.95);
         }
         .service-card .icon {
             font-size: 2.2rem;
@@ -431,6 +501,10 @@
             grid-template-columns: 1fr 1fr;
             gap: 50px;
             align-items: center;
+        }
+        .why-left {
+            position: relative;
+            z-index: 2;
         }
         .why-left .label {
             font-size: 0.65rem;
@@ -461,13 +535,13 @@
             gap: 16px;
             padding: 12px 18px;
             border-radius: 12px;
-            background: rgba(255, 255, 255, 0.50);
+            background: rgba(255, 255, 255, 0.60);
             backdrop-filter: blur(4px);
             border: 1px solid rgba(49, 84, 58, 0.04);
             transition: all 0.3s ease;
         }
         .why-item:hover {
-            background: rgba(255, 255, 255, 0.80);
+            background: rgba(255, 255, 255, 0.85);
             border-color: rgba(49, 84, 58, 0.10);
             transform: translateX(4px);
         }
@@ -487,6 +561,13 @@
             font-size: 0.92rem;
             font-weight: 500;
             color: #2D3A2D;
+        }
+        .why-right {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
         .why-image-composition {
             position: relative;
@@ -525,6 +606,8 @@
         .gallery-header {
             text-align: center;
             margin-bottom: 36px;
+            position: relative;
+            z-index: 2;
         }
         .gallery-header .label {
             font-size: 0.65rem;
@@ -556,6 +639,8 @@
             max-width: 1000px;
             margin: 0 auto;
             width: 100%;
+            position: relative;
+            z-index: 2;
         }
         .gallery-item {
             border-radius: 18px;
@@ -594,36 +679,15 @@
         .gallery-item:hover .caption {
             opacity: 1;
         }
-        .page-contacts {
-            background: var(--cream);
-            position: relative;
-            overflow: hidden;
-        }
         .page-contacts .page-inner {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 50px;
             align-items: center;
         }
-        .contacts-bg-leaf {
-            position: absolute;
-            right: -5%;
-            bottom: -10%;
-            font-size: 30rem;
-            color: var(--jungle);
-            opacity: 0.04;
-            pointer-events: none;
-            transform: rotate(15deg);
-        }
-        .contacts-bg-leaf-2 {
-            position: absolute;
-            left: -5%;
-            top: -10%;
-            font-size: 20rem;
-            color: var(--jungle);
-            opacity: 0.03;
-            pointer-events: none;
-            transform: rotate(-30deg);
+        .contacts-left {
+            position: relative;
+            z-index: 2;
         }
         .contacts-left .label {
             font-size: 0.65rem;
@@ -681,6 +745,13 @@
             letter-spacing: 1px;
             margin-bottom: 1px;
         }
+        .contacts-right {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
         .contacts-image-frame {
             width: 100%;
             max-width: 420px;
@@ -695,19 +766,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-        .final-note {
-            margin-top: 20px;
-            font-family: var(--font-serif);
-            font-size: 1.2rem;
-            font-weight: 400;
-            color: var(--jungle);
-            opacity: 0.7;
-            font-style: italic;
-        }
-        .final-note strong {
-            font-weight: 700;
-            opacity: 1;
         }
         .page-transition {
             position: fixed;
@@ -895,10 +953,6 @@
                 max-width: 340px;
                 margin: 0 auto;
             }
-            .contacts-bg-leaf,
-            .contacts-bg-leaf-2 {
-                display: none;
-            }
             .nav-controls {
                 bottom: 24px;
                 padding: 10px 16px;
@@ -1039,9 +1093,6 @@
                 height: 34px;
                 font-size: 0.8rem;
             }
-            .final-note {
-                font-size: 1rem;
-            }
         }
         .nav-btn:focus-visible {
             outline: 2px solid var(--jungle);
@@ -1063,7 +1114,8 @@
     <div class="page-transition" id="pageTransition"></div>
     <div class="magazine" id="magazine">
         <div class="pages-wrapper" id="pagesWrapper">
-            <!-- PAGE 01 -->
+
+            <!-- ==================== SLIDE 1: HERO ==================== -->
             <section class="page page-hero" data-index="0" aria-label="Главная страница">
                 <div class="hero-bg-image"></div>
                 <div class="leaf-deco leaf-deco-1">🌿</div>
@@ -1080,16 +1132,16 @@
                         <a href="#" class="hero-btn" onclick="event.preventDefault(); goToPage(5);">Записаться на прием <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="hero-right">
-                        <div class="hero-image-frame">
-                            <img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=800&q=80" alt="Стоматологическая клиника" loading="lazy" class="lazy" />
-                        </div>
+                        <!-- фото убрана, оставлен только фон -->
                     </div>
                 </div>
                 <div class="page-number"><span>01</span> / 06</div>
                 <div class="swipe-hint">← свайп →</div>
             </section>
-            <!-- PAGE 02 -->
+
+            <!-- ==================== SLIDE 2: ABOUT ==================== -->
             <section class="page page-about" data-index="1" aria-label="О клинике">
+                <div class="about-bg"></div>
                 <div class="page-inner">
                     <div class="about-text">
                         <span class="hero-badge" style="margin-bottom:16px;">О нас</span>
@@ -1103,13 +1155,15 @@
                         </div>
                     </div>
                     <div class="about-image">
-                        <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Интерьер клиники" loading="lazy" class="lazy" />
+                        <img src="7.jpg" alt="Интерьер клиники" />
                     </div>
                 </div>
                 <div class="page-number"><span>02</span> / 06</div>
             </section>
-            <!-- PAGE 03 -->
+
+            <!-- ==================== SLIDE 3: SERVICES ==================== -->
             <section class="page page-services" data-index="2" aria-label="Услуги">
+                <div class="services-bg"></div>
                 <div class="page-inner">
                     <div class="services-header">
                         <span class="label">Наши услуги</span>
@@ -1126,8 +1180,10 @@
                 </div>
                 <div class="page-number"><span>03</span> / 06</div>
             </section>
-            <!-- PAGE 04 -->
+
+            <!-- ==================== SLIDE 4: WHY ==================== -->
             <section class="page page-why" data-index="3" aria-label="Почему выбирают нас">
+                <div class="why-bg"></div>
                 <div class="page-inner">
                     <div class="why-left">
                         <span class="label">Почему выбирают нас?</span>
@@ -1141,7 +1197,7 @@
                     </div>
                     <div class="why-right">
                         <div class="why-image-composition">
-                            <img src="https://images.unsplash.com/photo-1606811971618-4486d14f3f99?w=800&q=80" alt="Зуб на камне" loading="lazy" class="lazy" />
+                            <img src="4.jpg" alt="Зуб на камне" />
                             <div class="deco-leaf deco-leaf-1">🌿</div>
                             <div class="deco-leaf deco-leaf-2">🍃</div>
                         </div>
@@ -1149,8 +1205,10 @@
                 </div>
                 <div class="page-number"><span>04</span> / 06</div>
             </section>
-            <!-- PAGE 05 -->
+
+            <!-- ==================== SLIDE 5: GALLERY ==================== -->
             <section class="page page-gallery" data-index="4" aria-label="Наша клиника">
+                <div class="gallery-bg"></div>
                 <div class="page-inner">
                     <div class="gallery-header">
                         <span class="label">Наша клиника</span>
@@ -1158,15 +1216,17 @@
                         <p>и внимательное отношение к каждому пациенту.</p>
                     </div>
                     <div class="gallery-grid">
-                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Ресепшен" loading="lazy" class="lazy" /><div class="caption">Уютная зона ресепшен</div></div>
-                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1629909613654-28e377c37b09?w=600&q=80" alt="Кабинет" loading="lazy" class="lazy" /><div class="caption">Современный кабинет</div></div>
-                        <div class="gallery-item"><img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=600&q=80" alt="Зона ожидания" loading="lazy" class="lazy" /><div class="caption">Зона ожидания с растениями</div></div>
+                        <div class="gallery-item"><img src="9.jpg" alt="Ресепшен" /><div class="caption">Уютная зона ресепшен</div></div>
+                        <div class="gallery-item"><img src="2.jpg" alt="Кабинет" /><div class="caption">Современный кабинет</div></div>
+                        <div class="gallery-item"><img src="8.jpg" alt="Зона ожидания" /><div class="caption">Зона ожидания с растениями</div></div>
                     </div>
                 </div>
                 <div class="page-number"><span>05</span> / 06</div>
             </section>
-            <!-- PAGE 06 -->
+
+            <!-- ==================== SLIDE 6: CONTACTS ==================== -->
             <section class="page page-contacts" data-index="5" aria-label="Контакты">
+                <div class="contacts-bg"></div>
                 <div class="contacts-bg-leaf">🌿</div>
                 <div class="contacts-bg-leaf-2">🍃</div>
                 <div class="page-inner">
@@ -1180,13 +1240,16 @@
                     </div>
                     <div class="contacts-right">
                         <div class="contacts-image-frame">
-                            <img src="https://images.unsplash.com/photo-1588776814546-1ffcf47267a5?w=800&q=80" alt="Уютный уголок" loading="lazy" class="lazy" />
+                            <img src="10.jpg" alt="Уютный уголок" />
                         </div>
                     </div>
                 </div>
                 <div class="page-number"><span>06</span> / 06</div>
             </section>
-        </div>
+
+        </div><!-- /pages-wrapper -->
+
+        <!-- ==================== NAVIGATION ==================== -->
         <nav class="nav-controls" aria-label="Навигация">
             <button class="nav-btn" id="prevBtn" aria-label="Предыдущая"><i class="fas fa-chevron-left"></i></button>
             <div class="nav-dots" id="navDots" role="tablist"></div>
@@ -1194,6 +1257,7 @@
             <button class="nav-btn" id="nextBtn" aria-label="Следующая"><i class="fas fa-chevron-right"></i></button>
         </nav>
     </div>
+
     <script>
         (function() {
             const wrapper = document.getElementById('pagesWrapper');
