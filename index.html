@@ -168,104 +168,7 @@
             min-width: 50px;
             text-align: center;
         }
-        /* ----- PHOTO PLACEHOLDERS ----- */
-        .photo-placeholder {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-        /* ----- SLIDE 1 HERO ----- */
-        .hero-bg-image {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.75) 0%, rgba(255, 255, 255, 0.30) 60%, transparent 100%),
-                url('images/10.jpg') center/cover no-repeat;
-            z-index: 0;
-        }
-        /* ----- SLIDE 2 ABOUT ----- */
-        .page-about .about-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
-                url('images/1.jpg') center/cover no-repeat;
-            z-index: 0;
-        }
-        .page-about .about-image img {
-            content: url('images/7.jpg');
-        }
-        /* ----- SLIDE 3 SERVICES ----- */
-        .page-services .services-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
-                url('images/1.jpg') center/cover no-repeat;
-            z-index: 0;
-        }
-        /* ----- SLIDE 4 WHY ----- */
-        .page-why .why-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.80) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
-                url('images/1.jpg') center/cover no-repeat;
-            z-index: 0;
-        }
-        .page-why .why-image-composition img {
-            content: url('images/4.jpg');
-        }
-        /* ----- SLIDE 5 GALLERY ----- */
-        .page-gallery .gallery-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
-                url('images/1.jpg') center/cover no-repeat;
-            z-index: 0;
-        }
-        .page-gallery .gallery-item:nth-child(1) img {
-            content: url('images/9.jpg');
-        }
-        .page-gallery .gallery-item:nth-child(2) img {
-            content: url('images/2.jpg');
-        }
-        .page-gallery .gallery-item:nth-child(3) img {
-            content: url('images/8.jpg');
-        }
-        /* ----- SLIDE 6 CONTACTS ----- */
-        .page-contacts .contacts-bg {
-            position: absolute;
-            inset: 0;
-            background: linear-gradient(135deg, rgba(255, 255, 255, 0.85) 0%, rgba(255, 255, 255, 0.40) 60%, transparent 100%),
-                url('images/1.jpg') center/cover no-repeat;
-            z-index: 0;
-        }
         /* ----- COMMON STYLES ----- */
-        .leaf-deco {
-            position: absolute;
-            z-index: 1;
-            pointer-events: none;
-            color: var(--jungle);
-            opacity: 0.12;
-        }
-        .leaf-deco-1 {
-            bottom: -20px;
-            right: -10px;
-            transform: rotate(20deg);
-            font-size: 10rem;
-        }
-        .leaf-deco-2 {
-            top: 10%;
-            left: -30px;
-            transform: rotate(-40deg);
-            font-size: 6rem;
-            opacity: 0.08;
-        }
-        .leaf-deco-3 {
-            bottom: 30%;
-            right: 5%;
-            transform: rotate(60deg);
-            font-size: 5rem;
-            opacity: 0.06;
-        }
         .hero-badge {
             display: inline-block;
             font-size: 0.65rem;
@@ -460,8 +363,7 @@
             z-index: 2;
         }
         .service-card {
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(8px);
+            background: var(--white);
             border-radius: 18px;
             padding: 32px 24px 28px;
             text-align: center;
@@ -474,7 +376,6 @@
             transform: translateY(-6px);
             box-shadow: 0 16px 48px rgba(49, 84, 58, 0.10);
             border-color: rgba(49, 84, 58, 0.10);
-            background: rgba(255, 255, 255, 0.95);
         }
         .service-card .icon {
             font-size: 2.2rem;
@@ -583,25 +484,6 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-        }
-        .why-image-composition .deco-leaf {
-            position: absolute;
-            font-size: 4rem;
-            color: var(--jungle);
-            opacity: 0.10;
-            pointer-events: none;
-        }
-        .why-image-composition .deco-leaf-1 {
-            bottom: -10px;
-            right: -10px;
-            transform: rotate(30deg);
-            font-size: 6rem;
-        }
-        .why-image-composition .deco-leaf-2 {
-            top: -10px;
-            left: -10px;
-            transform: rotate(-20deg);
-            font-size: 5rem;
         }
         .gallery-header {
             text-align: center;
@@ -880,9 +762,6 @@
                 padding: 14px 32px;
                 font-size: 0.85rem;
             }
-            .leaf-deco {
-                display: none;
-            }
             .about-text {
                 text-align: center;
             }
@@ -1117,10 +996,6 @@
 
             <!-- ==================== SLIDE 1: HERO ==================== -->
             <section class="page page-hero" data-index="0" aria-label="Главная страница">
-                <div class="hero-bg-image"></div>
-                <div class="leaf-deco leaf-deco-1">🌿</div>
-                <div class="leaf-deco leaf-deco-2">🌱</div>
-                <div class="leaf-deco leaf-deco-3">🍃</div>
                 <div class="page-inner">
                     <div class="hero-left">
                         <div class="hero-badge">✦ Премиальная стоматология</div>
@@ -1132,7 +1007,7 @@
                         <a href="#" class="hero-btn" onclick="event.preventDefault(); goToPage(5);">Записаться на прием <i class="fas fa-arrow-right"></i></a>
                     </div>
                     <div class="hero-right">
-                        <!-- фото убрана, оставлен только фон -->
+                        <!-- фото убрана, оставлен только чистый фон -->
                     </div>
                 </div>
                 <div class="page-number"><span>01</span> / 06</div>
@@ -1141,7 +1016,6 @@
 
             <!-- ==================== SLIDE 2: ABOUT ==================== -->
             <section class="page page-about" data-index="1" aria-label="О клинике">
-                <div class="about-bg"></div>
                 <div class="page-inner">
                     <div class="about-text">
                         <span class="hero-badge" style="margin-bottom:16px;">О нас</span>
@@ -1163,7 +1037,6 @@
 
             <!-- ==================== SLIDE 3: SERVICES ==================== -->
             <section class="page page-services" data-index="2" aria-label="Услуги">
-                <div class="services-bg"></div>
                 <div class="page-inner">
                     <div class="services-header">
                         <span class="label">Наши услуги</span>
@@ -1183,7 +1056,6 @@
 
             <!-- ==================== SLIDE 4: WHY ==================== -->
             <section class="page page-why" data-index="3" aria-label="Почему выбирают нас">
-                <div class="why-bg"></div>
                 <div class="page-inner">
                     <div class="why-left">
                         <span class="label">Почему выбирают нас?</span>
@@ -1198,8 +1070,6 @@
                     <div class="why-right">
                         <div class="why-image-composition">
                             <img src="images/4.jpg" alt="Зуб на камне" />
-                            <div class="deco-leaf deco-leaf-1">🌿</div>
-                            <div class="deco-leaf deco-leaf-2">🍃</div>
                         </div>
                     </div>
                 </div>
@@ -1208,7 +1078,6 @@
 
             <!-- ==================== SLIDE 5: GALLERY ==================== -->
             <section class="page page-gallery" data-index="4" aria-label="Наша клиника">
-                <div class="gallery-bg"></div>
                 <div class="page-inner">
                     <div class="gallery-header">
                         <span class="label">Наша клиника</span>
@@ -1226,9 +1095,6 @@
 
             <!-- ==================== SLIDE 6: CONTACTS ==================== -->
             <section class="page page-contacts" data-index="5" aria-label="Контакты">
-                <div class="contacts-bg"></div>
-                <div class="contacts-bg-leaf">🌿</div>
-                <div class="contacts-bg-leaf-2">🍃</div>
                 <div class="page-inner">
                     <div class="contacts-left">
                         <span class="label">Контакты</span>
